@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ch.schlagundrahm.swat.datapower.sample</groupId>
+    <artifactId>acme-swat-dp-services-pom</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>Parent POM for all ACME IBM DataPower Gateway service projects</description>
+
+    <url>https://github.com/schlagundrahm/swat4dp-acme-sample</url>
+
+    <inceptionYear>2018</inceptionYear>
+
+    <organization>
+        <name>ACME Inc.</name>
+        <url>http://www.acme.foo</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/schlagundrahm/swat4dp-acme-sample</url>
+        <connection>scm:git:git://github.com/schlagundrahm/swat4dp-acme-sample.git</connection>
+        <developerConnection>scm:git:https://github.com/schlagundrahm/swat4dp-acme-sample.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/schlagundrahm/swat4dp-acme-sample/issues</url>
+    </issueManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <swat4dp.version>0.1.0-SNAPSHOT</swat4dp.version>
+    </properties>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>dist</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <validationSets>
+                        <validationSet>
+                            <dir>master</dir>
+                            <includes>
+                                <include>**/*.xml</include>
+                                <include>**/*.xsd</include>
+                                <include>**/*.wsdl</include>
+                                <include>**/*.xsl</include>
+                            </includes>
+                        </validationSet>
+                        <validationSet>
+                            <dir>xcfg</dir>
+                        </validationSet>
+                    </validationSets>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>get-swat4dp-tools</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>unpack</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>ch.schlagundrahm.swat.datapower</groupId>
+                                        <artifactId>swat-dp-tools</artifactId>
+                                        <version>${swat4dp.version}</version>
+                                        <type>zip</type>
+                                        <overWrite>false</overWrite>
+                                        <outputDirectory>${project.build.directory}/swat-dp-tools</outputDirectory>
+                                    </artifactItem>
+                                </artifactItems>
+                                <excludeTransitive>true</excludeTransitive>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
+                    <executions>
+                        <execution>
+                            <id>swat4dp-build</id>
+                            <phase>prepare-package</phase>
+                            <configuration>
+                                <target>
+                                    <property name="compile_classpath" refid="maven.compile.classpath" />
+                                    <property name="swat.customer" value="acme" />
+                                    <property name="swat.dp.home" value="${project.build.directory}" />
+
+                                    <ant antfile="${basedir}/build.xml">
+                                        <property name="mgr.target.env.name" value="dev" />
+                                        <target name="service-build" />
+                                    </ant>
+                                    <ant antfile="${basedir}/build.xml">
+                                        <property name="mgr.target.env.name" value="prd" />
+                                        <target name="service-build" />
+                                    </ant>
+                                </target>
+                            </configuration>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <configuration>
+                        <filters>
+                            <filter>${project.basedir}/src/assembly/filter.properties</filter>
+                        </filters>
+                        <descriptors>
+                            <descriptor>${project.basedir}/src/assembly/build-dev.xml</descriptor>
+                            <descriptor>${project.basedir}/src/assembly/build-prd.xml</descriptor>
+                        </descriptors>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>swat4dp-assembly</id> <!-- this is used for inheritance merges -->
+                            <phase>package</phase> <!-- bind to the packaging phase -->
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- DataPower-Bundle dependencies -->
+            <dependency>
+                <groupId>ch.schlagundrahm.swat.datapower</groupId>
+                <artifactId>swat-dp-tools</artifactId>
+                <version>${swat4dp.version}</version>
+                <type>zip</type>
+            </dependency>
+
+            <!-- Test-Bundle dependencies -->
+
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- DataPower-Bundle dependencies -->
+        <dependency>
+            <groupId>ch.schlagundrahm.swat.datapower</groupId>
+            <artifactId>swat-dp-tools</artifactId>
+            <version>${swat4dp.version}</version>
+            <type>zip</type>
+        </dependency>
+
+        <!-- Test-Bundle dependencies -->
+
+    </dependencies>
+
+    <developers>
+        <developer>
+            <id>psha</id>
+            <name>Pierce Shah</name>
+            <organization>IBM (Schweiz) AG</organization>
+            <roles>
+                <role>Senior IT Specialist</role>
+            </roles>
+            <email>pierce.shah@ch.ibm.com</email>
+        </developer>
+    </developers>
+</project>
