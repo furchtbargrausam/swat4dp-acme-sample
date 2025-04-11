@@ -13,11 +13,11 @@
 
     <url>https://github.com/schlagundrahm/swat4dp-acme-sample</url>
 
-    <inceptionYear>2018</inceptionYear>
+    <inceptionYear>2024</inceptionYear>
 
     <organization>
         <name>ACME Inc.</name>
-        <url>http://www.acme.foo</url>
+        <url>https://en.wikipedia.org/wiki/Acme_Corporation</url>
     </organization>
 
     <licenses>
@@ -63,6 +63,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
