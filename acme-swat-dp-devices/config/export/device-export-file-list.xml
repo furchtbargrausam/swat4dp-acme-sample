@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export-files domain="@domain.name@">
+   <dir name="store:/" />
+</export-files>

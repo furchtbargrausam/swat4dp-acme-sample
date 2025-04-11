@@ -1,0 +1,13 @@
+swat.customer=acme
+swat.customer.home=<path to the your swat4dp projects>
+swat.tools.home=<path to the swat4dp folder>
+swat.dp.infra=${swat.dp.customer.home}/acme-swat-dp-infra
+swat.dp.devices=${swat.dp.customer.home}/acme-swat-dp-devices
+swat.dp.service.templates=${swat.dp.customer.home}/acme-swat-dp-service-template
+mgr.target.user.name.default=<default DataPower user>
+mgr.target.password.value.default=<password for the default user>
+#mgr.target.password.value.<env>=<password for a particular environment>
+
+
+# Optional: Use cURL instead of Ant HttpClientTask to connect to your device
+#curl.exec=<path to your cURL command>
