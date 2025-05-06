@@ -9,6 +9,25 @@ a sample project setup showing how the fictional company ACME could use swat4dp
 
 ## Setup
 
+### swat4dp tooling
+Download the following XSD files from a DataPower device and stor them in swat-dp-tools/schema.
+1. xml-mgmt-b2b.xsd
+2. xml-mgmt-base.xsd
+3. xml-mgmt-ops.xsd
+4. xml-mgmt.xsd
+
+### swat4dp properties
+Create ~/.swat4dp/build.properties with the following content:
+
+```
+swat.customer=acme
+swat.sdp.customer.home=C:\\Users\\johndoe\\git
+```
+
+Notes:
+- *acme* is the customer prefix which should be something company/department specific
+- On Windows you have to use double-backslaches!
+
 
 ### Domains
 * _admin_ : Domain for administrative services 
@@ -20,11 +39,11 @@ a sample project setup showing how the fictional company ACME could use swat4dp
 The preconfigured infra setup makes the following assumptions:
 
 * Customer: acme
-  * Zones: DMZ
-    * Environments: dev
-	  * Domains: adm, bu, util
-  * Device Sets: dev
-    * Devices: dev5
+    * Zones: DMZ
+        * Environments: dev
+        * Domains: adm, bu, util
+    * Device Sets: dev
+        * Devices: dev5
 
 ### Devices
 
@@ -36,12 +55,18 @@ The preconfigured infra setup makes the following assumptions:
 ## FAQ
 
 1. How to resolve “java.lang.IllegalAccessError” issues with Java 17 or newer?
-  * The Ant xmltask uses a library that still needs access to internal java functions.
-    This works till Java 11 but with a newer JDK you have to add the following VM arguments:
-	```
-	--add-exports java.xml/com.sun.org.apache.xpath.internal.objects=ALL-UNNAMED
-	--add-exports java.xml/com.sun.org.apache.xpath.internal=ALL-UNNAMED
-	```
+    * The Ant xmltask uses a library that still needs access to internal java functions.
+      This works till Java 11 but with a newer JDK you have to add the following VM arguments:
+    
+```
+    --add-exports java.xml/com.sun.org.apache.xpath.internal.objects=ALL-UNNAMED
+    --add-exports java.xml/com.sun.org.apache.xpath.internal=ALL-UNNAMED
+```
+
+```
+    export ANT_OPTS="--add-exports java.xml/com.sun.org.apache.xpath.internal.objects=ALL-UNNAMED --add-exports java.xml/com.sun.org.apache.xpath.internal=ALL-UNNAMED"
+```
+
 
 ## Hints and Links
 [How to resolve “java.lang.IllegalAccessError” OR “unnamed module cannot access class” Error in java 17](https://medium.com/@varunrathod0045/how-to-resolve-java-lang-illegalaccesserror-553ac2c83af9)
