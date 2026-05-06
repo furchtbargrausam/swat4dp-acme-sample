@@ -3,7 +3,7 @@
   <groupId>ch.schlagundrahm.swat.datapower</groupId>
   <artifactId>swat-dp-tools</artifactId>
   <versioning>
-    <lastUpdated>20250411123937</lastUpdated>
+    <lastUpdated>20250506170633</lastUpdated>
     <snapshot>
       <localCopy>true</localCopy>
     </snapshot>
@@ -11,12 +11,12 @@
       <snapshotVersion>
         <extension>pom</extension>
         <value>0.3.0-SNAPSHOT</value>
-        <updated>20250411123937</updated>
+        <updated>20250506170633</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>zip</extension>
         <value>0.3.0-SNAPSHOT</value>
-        <updated>20250411123937</updated>
+        <updated>20250506170633</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
