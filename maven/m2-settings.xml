@@ -29,7 +29,7 @@
 		| Default: ~/.m2/repository
 		<localRepository>/path/to/local/repo</localRepository>
 	-->
-	<localRepository>C:\Users\080133848\ibmdev\git\repos\swat4dp-acme-sample\maven\repository</localRepository>
+	<localRepository>C:\Users\PierceShah\ibmdev\git\repos\swat4dp-acme-sample\maven\repository</localRepository>
 	<!-- localRepository>~/ibmdev/git/repos/swat4dp-acme-sample/maven/repository</localRepository -->
 
 	<!-- interactiveMode
