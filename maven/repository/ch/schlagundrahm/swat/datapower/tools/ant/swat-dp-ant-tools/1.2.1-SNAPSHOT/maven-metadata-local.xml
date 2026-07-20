@@ -3,7 +3,7 @@
   <groupId>ch.schlagundrahm.swat.datapower.tools.ant</groupId>
   <artifactId>swat-dp-ant-tools</artifactId>
   <versioning>
-    <lastUpdated>20260506123427</lastUpdated>
+    <lastUpdated>20260506140246</lastUpdated>
     <snapshot>
       <localCopy>true</localCopy>
     </snapshot>
@@ -11,24 +11,24 @@
       <snapshotVersion>
         <extension>pom</extension>
         <value>1.2.1-SNAPSHOT</value>
-        <updated>20260506123427</updated>
+        <updated>20260506140246</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>jar</extension>
         <value>1.2.1-SNAPSHOT</value>
-        <updated>20260506123427</updated>
+        <updated>20260506140246</updated>
       </snapshotVersion>
       <snapshotVersion>
         <classifier>sources</classifier>
         <extension>jar</extension>
         <value>1.2.1-SNAPSHOT</value>
-        <updated>20260506123427</updated>
+        <updated>20260506140246</updated>
       </snapshotVersion>
       <snapshotVersion>
         <classifier>javadoc</classifier>
         <extension>jar</extension>
         <value>1.2.1-SNAPSHOT</value>
-        <updated>20260506123427</updated>
+        <updated>20260506140246</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
