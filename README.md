@@ -21,12 +21,14 @@ Create ~/.swat4dp/build.properties with the following content:
 
 ```
 swat.customer=acme
-swat.sdp.customer.home=C:\\Users\\johndoe\\git
+swat.acme.customer.home=C:\\Users\\johndoe\\git\\ACME
+swat.foo.customer.home=C:\\Users\\johndoe\\git\\foo
 ```
 
 Notes:
-- *acme* is the customer prefix which should be something company/department specific
+- *acme* is the customer prefix which should be something company/department specific.
 - On Windows you have to use double-backslaches!
+- You can have multiple customer homes (aka tenants), but only one can be active (there's only one swat.customer property).
 
 
 ### Domains
