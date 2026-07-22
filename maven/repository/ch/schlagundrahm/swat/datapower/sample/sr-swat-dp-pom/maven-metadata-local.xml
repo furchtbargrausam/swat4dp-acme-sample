@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>ch.schlagundrahm.swat.datapower.sample</groupId>
+  <artifactId>sr-swat-dp-pom</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20260722165349</lastUpdated>
+  </versioning>
+</metadata>

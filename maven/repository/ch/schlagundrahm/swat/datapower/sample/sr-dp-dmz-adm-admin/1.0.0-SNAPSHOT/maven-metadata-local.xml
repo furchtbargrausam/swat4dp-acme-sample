@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>ch.schlagundrahm.swat.datapower.sample</groupId>
+  <artifactId>sr-dp-dmz-adm-admin</artifactId>
+  <versioning>
+    <lastUpdated>20260722165713</lastUpdated>
+    <snapshot>
+      <localCopy>true</localCopy>
+    </snapshot>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0.0-SNAPSHOT</value>
+        <updated>20260722165713</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>dev</classifier>
+        <extension>zip</extension>
+        <value>1.0.0-SNAPSHOT</value>
+        <updated>20260722165713</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+  <version>1.0.0-SNAPSHOT</version>
+</metadata>
