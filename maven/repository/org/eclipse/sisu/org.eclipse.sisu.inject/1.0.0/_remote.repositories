@@ -1,3 +1,4 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Jul 20 17:52:28 CEST 2026
+#Wed Jul 22 09:20:11 CEST 2026
+org.eclipse.sisu.inject-1.0.0.jar>central=
 org.eclipse.sisu.inject-1.0.0.pom>central=
